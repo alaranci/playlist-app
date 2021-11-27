@@ -1,23 +1,13 @@
 <template>
-  <ul>
-    <li>
-      <playlist-component
-        v-for="song in playlist"
-        :key="song.id"
-        :title="song.title"
-        :writer="song.writer"
-        :place="song.place"
-      ></playlist-component>
-    </li>
-  </ul>
+  <playlist-template :playlist="playlist"></playlist-template>
 </template>
 
 <script>
-import PlaylistComponent from './components/PlaylistComponent.vue';
+import PlaylistTemplate from './components/PlaylistTemplate.vue';
 
 export default {
   components: {
-    PlaylistComponent,
+    PlaylistTemplate,
   },
 
   data() {
@@ -40,3 +30,19 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
