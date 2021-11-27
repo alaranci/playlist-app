@@ -1,15 +1,25 @@
 <template>
   <ul>
-    <li v-for="song in playlist" :key="song.id">
-      <h2>{{ song.title }}</h2>
-      <p>{{ song.writer }}</p>
-      <span>{{ song.place }}</span>
+    <li>
+      <playlist-component
+        v-for="song in playlist"
+        :key="song.id"
+        :title="song.title"
+        :writer="song.writer"
+        :place="song.place"
+      ></playlist-component>
     </li>
   </ul>
 </template>
 
 <script>
+import PlaylistComponent from './components/PlaylistComponent.vue';
+
 export default {
+  components: {
+    PlaylistComponent,
+  },
+
   data() {
     return {
       playlist: [
