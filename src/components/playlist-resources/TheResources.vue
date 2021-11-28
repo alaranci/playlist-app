@@ -33,6 +33,7 @@ export default {
   provide() {
     return {
       playlist: this.playlist,
+      addPlaylist: this.addPlaylist,
     };
   },
 
@@ -59,6 +60,18 @@ export default {
   methods: {
     setSelectedTab(tab) {
       this.selectedTab = tab;
+    },
+
+    addPlaylist(title, writer, place) {
+      const newPlaylist = {
+        id: new Date().toISOString,
+        title: title,
+        writer: writer,
+        place: place,
+      };
+
+      this.playlist.unshift(newPlaylist);
+      this.selectedTab = 'playlist-template';
     },
   },
 };

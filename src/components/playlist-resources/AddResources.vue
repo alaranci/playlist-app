@@ -2,17 +2,24 @@
   <base-card>
     <form>
       <div class="form-control">
-        <label for="title">Title: <input type="text" id="title" /></label>
+        <label for="title"
+          >Title: <input type="text" id="title" v-model="userInput.title"
+        /></label>
       </div>
       <div class="form-control">
-        <label for="writer">Writer: <input type="text" id="writer" /></label>
+        <label for="writer"
+          >Writer: <input type="text" id="writer" v-model="userInput.writer"
+        /></label>
       </div>
       <div class="form-control">
         <label for="place"
-          >Place: <textarea type="url" id="place" rows="3" />
+          >Place:
+          <textarea type="url" id="place" rows="3" v-model="userInput.place" />
         </label>
       </div>
-      <base-button type="submit">Add Playlist</base-button>
+      <base-button type="submit" @click.prevent="fetchUserInput"
+        >Add Playlist</base-button
+      >
     </form>
   </base-card>
 </template>
@@ -25,6 +32,34 @@ export default {
   components: {
     BaseCard,
     BaseButton,
+  },
+
+  inject: ['addPlaylist'],
+
+  data() {
+    return {
+      userInput: {
+        title: '',
+        writer: '',
+        place: '',
+      },
+    };
+  },
+
+  methods: {
+    fetchUserInput() {
+      if (
+        this.userInput.title !== '' &&
+        this.userInput.writer !== '' &&
+        this.userInput.place !== ''
+      ) {
+        this.addPlaylist(
+          this.userInput.title,
+          this.userInput.writer,
+          this.userInput.place
+        );
+      }
+    },
   },
 };
 </script>
