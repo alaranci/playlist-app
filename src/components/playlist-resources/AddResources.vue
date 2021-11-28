@@ -1,6 +1,22 @@
 <template>
+  <base-dialog
+    v-if="isInputInvalid"
+    title="Invalid Input"
+    @close="isInputInvalid = false"
+  >
+    <template #default>
+      <p>Unfortunately, at least one input value is invalid</p>
+      <p>
+        Please check all inputs and make sure you enter at least a few
+        characters into each input field
+      </p>
+    </template>
+    <template #actions>
+      <base-button @click="isInputInvalid = false">Okay</base-button>
+    </template>
+  </base-dialog>
   <base-card>
-    <form>
+    <form @keyup.enter="fetchUserInput">
       <div class="form-control">
         <label for="title"
           >Title: <input type="text" id="title" v-model="userInput.title"
@@ -27,11 +43,13 @@
 <script>
 import BaseButton from '../user-interfaces/BaseButton.vue';
 import BaseCard from '../user-interfaces/BaseCard.vue';
+import BaseDialog from '../user-interfaces/BaseDialog.vue';
 
 export default {
   components: {
     BaseCard,
     BaseButton,
+    BaseDialog,
   },
 
   inject: ['addPlaylist'],
@@ -43,21 +61,20 @@ export default {
         writer: '',
         place: '',
       },
+      isInputInvalid: false,
     };
   },
 
   methods: {
     fetchUserInput() {
-      if (
-        this.userInput.title !== '' &&
-        this.userInput.writer !== '' &&
-        this.userInput.place !== ''
-      ) {
-        this.addPlaylist(
-          this.userInput.title,
-          this.userInput.writer,
-          this.userInput.place
-        );
+      const title = this.userInput.title;
+      const writer = this.userInput.writer;
+      const place = this.userInput.place;
+
+      if (title.trim() !== '' && writer.trim() !== '' && place.trim() !== '') {
+        this.addPlaylist(title, writer, place);
+      } else {
+        this.isInputInvalid = true;
       }
     },
   },
