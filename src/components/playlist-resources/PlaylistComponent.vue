@@ -1,21 +1,28 @@
 <template>
   <li>
-    <div>
+    <base-card>
       <header>
         <h3>{{ title }}</h3>
         <button>Delete</button>
       </header>
-    </div>
-    <p>{{ writer }}</p>
 
-    <nav>
-      <a :href="place">Lihat playlist</a>
-    </nav>
+      <p>{{ writer }}</p>
+
+      <nav>
+        <a :href="place">Lihat playlist</a>
+      </nav>
+    </base-card>
   </li>
 </template>
 
 <script>
+import BaseCard from '@/components/user-interfaces/BaseCard.vue';
+
 export default {
+  components: {
+    BaseCard,
+  },
+
   props: {
     title: String,
     writer: String,
