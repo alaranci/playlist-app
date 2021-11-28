@@ -15,7 +15,7 @@ import PlaylistComponent from './PlaylistComponent.vue';
 
 export default {
   props: {
-    playlist: String,
+    playlist: Array,
   },
 
   components: {

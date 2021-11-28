@@ -1,16 +1,19 @@
 <template>
   <the-header title="Yahahaha"></the-header>
+  <the-resources></the-resources>
   <playlist-template :playlist="playlist"></playlist-template>
 </template>
 
 <script>
-import PlaylistTemplate from '@/components/playlist-resources/PlaylistTemplate.vue';
 import TheHeader from '@/components/layouts/TheHeader.vue';
+import TheResources from '@/components/playlist-resources/TheResources.vue';
+import PlaylistTemplate from '@/components/playlist-resources/PlaylistTemplate.vue';
 
 export default {
   components: {
-    PlaylistTemplate,
     TheHeader,
+    TheResources,
+    PlaylistTemplate,
   },
 
   data() {
