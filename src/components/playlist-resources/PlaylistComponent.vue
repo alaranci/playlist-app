@@ -3,7 +3,9 @@
     <base-card>
       <header>
         <h3>{{ title }}</h3>
-        <base-button mode="flat">Delete</base-button>
+        <base-button mode="flat" @click="removePlaylist(id)"
+          >Delete</base-button
+        >
       </header>
 
       <p>{{ writer }}</p>
@@ -26,10 +28,13 @@ export default {
   },
 
   props: {
+    id: String,
     title: String,
     writer: String,
     place: String,
   },
+
+  inject: ['removePlaylist'],
 };
 </script>
 

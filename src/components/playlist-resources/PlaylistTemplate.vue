@@ -3,6 +3,7 @@
     <playlist-component
       v-for="song in playlist"
       :key="song.id"
+      :id="song.id"
       :title="song.title"
       :writer="song.writer"
       :place="song.place"

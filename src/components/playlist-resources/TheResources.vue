@@ -34,6 +34,7 @@ export default {
     return {
       playlist: this.playlist,
       addPlaylist: this.addPlaylist,
+      removePlaylist: this.removePlaylist,
     };
   },
 
@@ -42,13 +43,13 @@ export default {
       selectedTab: 'playlist-template',
       playlist: [
         {
-          id: 1,
+          id: '1',
           title: 'Real Estate',
           writer: 'Adam',
           place: 'Avery #1',
         },
         {
-          id: 2,
+          id: '2',
           title: 'The Most Beautiful Thing',
           writer: 'Bruno Major',
           place: 'Avery #1',
@@ -64,7 +65,7 @@ export default {
 
     addPlaylist(title, writer, place) {
       const newPlaylist = {
-        id: new Date().toISOString,
+        id: new Date().toISOString(),
         title: title,
         writer: writer,
         place: place,
@@ -72,6 +73,11 @@ export default {
 
       this.playlist.unshift(newPlaylist);
       this.selectedTab = 'playlist-template';
+    },
+
+    removePlaylist(id) {
+      const playlistIndex = this.playlist.findIndex((song) => song.id === id);
+      this.playlist.splice(playlistIndex, 1);
     },
   },
 };
